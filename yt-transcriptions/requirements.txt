@@ -1,0 +1,28 @@
+# Core Dependencies
+torch>=2.0.0
+transformers>=4.30.0
+python-dotenv>=1.0.0
+numpy>=1.24.3
+sentence-transformers>=2.2.2
+
+# Audio Processing
+soundfile>=0.12.1
+pydub>=0.25.1
+gTTS>=2.5.1
+
+# API and Data Processing
+requests>=2.31.0
+pysrt>=1.1.2
+webvtt-py>=0.4.6
+langdetect>=1.0.9
+
+# YouTube Integration
+youtube-search-python>=1.6.6
+youtube-transcript-api>=0.6.1
+yt-dlp>=2023.11.16
+
+# Web Framework
+flask==3.0.0
+
+# Added from the code block
+tenacity

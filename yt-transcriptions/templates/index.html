@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Summarizer - Smart Video Analysis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <div class="nav-content">
+                <div class="nav-logo">
+                    <i class="fab fa-youtube"></i>
+                    <span>Summarizer</span>
+                </div>
+                <div class="nav-actions">
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Transform Videos into Insights</h1>
+                <p class="hero-subtitle">Get summaries, key moments, and audio versions of any YouTube video</p>
+                
+                <form id="videoForm" class="url-form">
+                    <div class="input-wrapper">
+                        <input type="url" id="youtubeUrl" 
+                               placeholder="Paste YouTube URL here..." 
+                               required>
+                        <button type="submit" id="submitBtn">
+                            <i class="fas fa-magic"></i> Process Video
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Loading State -->
+        <div id="loadingSpinner" class="loading-state d-none">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <p>Processing your video... This may take a few minutes.</p>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <section id="results" class="results-section d-none">
+            <div class="content-grid">
+                <!-- Main Content -->
+                <div class="main-content">
+                    <!-- Video Player -->
+                    <div class="video-container">
+                        <div id="player"></div>
+                    </div>
+
+                    <!-- Summary Card -->
+                    <div class="content-card summary-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-file-alt"></i> Summary</h2>
+                        </div>
+                        <div class="card-content">
+                            <div id="summaryText" class="summary-text"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Content -->
+                <div class="side-content">
+                    <!-- Audio Player -->
+                    <div class="content-card audio-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-headphones"></i> Audio Version</h2>
+                        </div>
+                        <div class="card-content">
+                            <audio controls class="custom-audio">
+                                <source id="audioSource" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+
+                    <!-- Timestamps -->
+                    <div class="content-card timestamps-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-clock"></i> Key Moments</h2>
+                        </div>
+                        <div class="card-content">
+                            <div id="timestampsList" class="timestamps-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Alert -->
+        <div id="errorAlert" class="error-alert d-none" role="alert"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
